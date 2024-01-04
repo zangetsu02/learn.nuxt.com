@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Terminal } from 'xterm'
+import { FitAddon } from 'xterm-addon-fit'
 import 'xterm/css/xterm.css'
 
 const props = defineProps<{
@@ -8,6 +9,8 @@ const props = defineProps<{
 
 const root = ref<HTMLDivElement>()
 const terminal = new Terminal()
+const fitAddon = new FitAddon()
+terminal.loadAddon(fitAddon)
 
 watch(
   () => props.stream,
@@ -30,6 +33,7 @@ watch(
 
 onMounted(() => {
   terminal.open(root.value!)
+  fitAddon.fit()
 })
 </script>
 

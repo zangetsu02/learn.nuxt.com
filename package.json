@@ -12,7 +12,8 @@
     "format": "eslint . --fix"
   },
   "dependencies": {
-    "@webcontainer/api": "^1.1.8"
+    "@webcontainer/api": "^1.1.8",
+    "xterm-addon-fit": "^0.8.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",
