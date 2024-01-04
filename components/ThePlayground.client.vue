@@ -69,14 +69,12 @@ onMounted(startDevServer)
 </script>
 
 <template>
-  <div h-full w-full grid="~ rows[2fr_1fr]" of-hidden>
+  <div max-h-full w-full grid="~ rows-[2fr_1fr]" of-hidden relative>
     <iframe v-show="status === 'ready'" ref="iframe" w-full h-full />
-
-    <div v-if="status !== 'ready'" w-full h-full flex="~ items-center justify-center" capitalize text-lg>
-      <div class="i-svg-spinners-90-ring-with-bg" />
+    <div v-if="status !== 'ready'" flex="~ col items-center justify-center" capitalize text-lg>
+      <div i-svg-spinners-90-ring-with-bg />
       {{ status }}ing...
     </div>
-
-    <TheTerminalOutput :stream="stream" />
+    <TheTerminalOutput :stream="stream" h="33%" />
   </div>
 </template>
