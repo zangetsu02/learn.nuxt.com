@@ -5,7 +5,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@unocss/nuxt",
     "@nuxt/content",
-    "@nuxt/color-mode",
     "@nuxtjs/color-mode"
   ]
 })
