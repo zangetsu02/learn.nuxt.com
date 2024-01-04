@@ -15,8 +15,7 @@ function toggleDark() {
         {{ color.value }}
       </button>
     </div>
-    <div class="p4">
-      Playground
-    </div>
+
+    <ThePlayground />
   </div>
 </template>

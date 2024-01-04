@@ -44,6 +44,5 @@
   "breadcrumbs.showPackages": true,
   "outline.showPackages": true,
   "explorer.excludeGitIgnore": true,
-
-  "files.exclude": { "**/node_modules": true }
+  "files.autoSave": "afterDelay"
 }
