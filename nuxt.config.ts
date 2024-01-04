@@ -2,13 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    "@vueuse/nuxt",
-    "@unocss/nuxt",
-    "@nuxt/content",
-    "@nuxtjs/color-mode"
+    '@vueuse/nuxt',
+    '@unocss/nuxt',
+    '@nuxt/content',
+    '@nuxtjs/color-mode',
   ],
 
   colorMode: {
-    classSuffix: ''
-  }
+    classSuffix: '',
+  },
 })
