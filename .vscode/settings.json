@@ -44,5 +44,12 @@
   "breadcrumbs.showPackages": true,
   "outline.showPackages": true,
   "explorer.excludeGitIgnore": true,
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+
+  "files.exclude": {
+    "**/node_modules/**": false
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": false
+  }
 }
