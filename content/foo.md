@@ -1,1 +1,3 @@
-# Foo content
+# Foo
+
+This is another page.

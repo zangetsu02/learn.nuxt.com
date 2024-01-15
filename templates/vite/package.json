@@ -1,10 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nuxt dev"
+    "dev": "vite dev"
   },
   "dependencies": {
-    "nuxt": "latest",
-    "vue": "^3.3.8"
+    "vite": "latest"
   }
 }

@@ -12,8 +12,8 @@ import '@unocss/reset/tailwind.css'
 .dark {
   color-scheme: dark;
 }
-html,
-body {
+
+html, body {
   height: 100vh;
   overflow: hidden;
   --uno: bg-base font-sans;

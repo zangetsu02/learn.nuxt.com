@@ -1,4 +1,6 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import type { FileSystemTree } from '@webcontainer/api'
+
 const iframe = ref<HTMLIFrameElement>()
 const wcUrl = ref<string>()
 
@@ -10,21 +12,14 @@ const error = shallowRef<{ message: string }>()
 const stream = ref<ReadableStream>()
 
 async function startDevServer() {
-  const rawFiles = import.meta.glob([
-    '../templates/basic/*.*',
-    '!**/node_modules/**',
-  ], {
-    as: 'raw',
-    eager: true,
-  })
-
-  const files = Object.fromEntries(
-    Object.entries(rawFiles).map(([path, content]) => {
-      return [path.replace('../templates/basic/', ''), {
-        file: {
-          contents: content,
-        },
-      }]
+  const tree = globFilesToWebContainerFs(
+    '../templates/nitro/',
+    import.meta.glob([
+      '../templates/nitro/**/*.*',
+      '!**/node_modules/**',
+    ], {
+      as: 'raw',
+      eager: true,
     }),
   )
 
@@ -35,15 +30,16 @@ async function startDevServer() {
     wcUrl.value = url
   })
 
-  wc.on('error', (e) => {
+  wc.on('error', (err) => {
     status.value = 'error'
-    error.value = e
+    error.value = err
   })
 
   status.value = 'mount'
-  await wc.mount(files)
+  await wc.mount(tree)
 
   status.value = 'install'
+
   const installProcess = await wc.spawn('pnpm', ['install'])
   stream.value = installProcess.output
   const installExitCode = await installProcess.exit
@@ -51,8 +47,9 @@ async function startDevServer() {
   if (installExitCode !== 0) {
     status.value = 'error'
     error.value = {
-      message: `Unable to run npm install, exit as ' + ${installExitCode}`,
+      message: `Unable to run npm install, exit as ${installExitCode}`,
     }
+    throw new Error('Unable to run npm install')
   }
 
   status.value = 'start'
@@ -65,6 +62,12 @@ async function startDevServer() {
       devProcess.kill()
     })
   }
+}
+
+function sendMessage() {
+  if (!iframe.value)
+    return
+  iframe.value.contentWindow!.postMessage('hello', '*')
 }
 
 watchEffect(() => {
@@ -82,6 +85,9 @@ onMounted(startDevServer)
       <div i-svg-spinners-90-ring-with-bg />
       {{ status }}ing...
     </div>
-    <TheTerminalOutput :stream="stream" min-h-0 />
+    <TerminalOutput :stream="stream" class="min-h-0" />
+    <button @click="sendMessage">
+      send
+    </button>
   </div>
 </template>

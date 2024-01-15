@@ -1,3 +1,3 @@
-# Hello nuxt playground
+# Hello Nuxt Playground
 
-This is a `work in progress` playground to learn Nuxt.
+This is a `working in progress` playground to learn Nuxt.

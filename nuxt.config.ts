@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/color-mode',
   ],
-
   colorMode: {
     classSuffix: '',
   },
